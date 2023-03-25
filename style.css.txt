@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#fine-container {
+  margin: 20px;
+}
+
+#person-image {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
