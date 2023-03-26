@@ -10,6 +10,11 @@ async function fetchData() {
 
     for (let i = 0; i < rows.length; i++) {
         const cells = rows[i].split('\t');
+
+        if (cells.length !== 3) {
+            continue; // Skip rows with an incorrect number of cells
+        }
+
         const fine = {
             person: cells[0],
             text: cells[1],
@@ -22,6 +27,7 @@ async function fetchData() {
         }
     }
 }
+
 
 
 const fineTextElement = document.getElementById('fine-text');
