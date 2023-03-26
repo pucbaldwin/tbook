@@ -51,6 +51,12 @@ function generateRandomFine() {
 
     const randomIndex = Math.floor(Math.random() * fines.length);
     const selectedFine = fines[randomIndex];
+
+    if (!selectedFine) {
+        console.log(`No fine found at index ${randomIndex}.`);
+        return;
+    }
+
     fineTextElement.textContent = `${selectedFine.person}: ${selectedFine.text}`;
     personImageElement.src = persons[selectedFine.person];
 }
