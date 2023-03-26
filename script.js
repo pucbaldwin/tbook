@@ -32,9 +32,10 @@ async function fetchData() {
             persons[fine.person] = cells[2];
         }
     }
+
+    console.log('Fines:', fines);
+    console.log('Persons:', persons);
 }
-
-
 
 
 
