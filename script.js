@@ -1,7 +1,6 @@
 const fines = [];
 const persons = {};
 
-
 async function fetchData() {
     const response = await fetch('fines.csv');
     const data = await response.text();
@@ -32,12 +31,7 @@ async function fetchData() {
             persons[fine.person] = cells[2];
         }
     }
-
-    console.log('Fines:', fines);
-    console.log('Persons:', persons);
 }
-
-
 
 const fineTextElement = document.getElementById('fine-text');
 const personImageElement = document.getElementById('person-image');
@@ -52,15 +46,13 @@ function generateRandomFine() {
     const randomIndex = Math.floor(Math.random() * fines.length);
     const selectedFine = fines[randomIndex];
 
-    if (!selectedFine) {
-        console.log(`No fine found at index ${randomIndex}.`);
-        return;
+    if (selectedFine && selectedFine.person && persons[selectedFine.person]) {
+        fineTextElement.textContent = `${selectedFine.person}: ${selectedFine.text}`;
+        personImageElement.src = persons[selectedFine.person];
+    } else {
+        console.log('Invalid fine data:', selectedFine);
     }
-
-    fineTextElement.textContent = `${selectedFine.person}: ${selectedFine.text}`;
-    personImageElement.src = persons[selectedFine.person];
 }
-
 
 generateButton.addEventListener('click', generateRandomFine);
 
