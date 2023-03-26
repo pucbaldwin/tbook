@@ -33,6 +33,31 @@ async function fetchData() {
     }
 }
 
+function checkPassword() {
+    const password = "finesbook";
+
+    // Check if the user already entered the correct password during this session
+    if (sessionStorage.getItem("passwordCorrect") === "true") {
+        document.getElementById("content").style.display = "block";
+        fetchData().then(generateRandomFine);
+        return;
+    }
+
+    const inputPassword = prompt("Enter the password to view this page:");
+
+    if (inputPassword === password) {
+        // Set the sessionStorage flag to indicate the correct password was entered
+        sessionStorage.setItem("passwordCorrect", "true");
+        document.getElementById("content").style.display = "block";
+        fetchData().then(generateRandomFine);
+    } else {
+        alert("Incorrect password. Please try again.");
+        checkPassword();
+    }
+}
+
+
+
 const fineTextElement = document.getElementById('fine-text');
 const personImageElement = document.getElementById('person-image');
 const generateButton = document.getElementById('generate-button');
@@ -57,4 +82,5 @@ function generateRandomFine() {
 generateButton.addEventListener('click', generateRandomFine);
 
 // Fetch data and generate a random fine when the page loads
-fetchData().then(generateRandomFine);
+checkPassword();
+
