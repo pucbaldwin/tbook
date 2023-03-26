@@ -13,7 +13,7 @@ async function fetchData() {
             continue;
         }
 
-        const cells = row.split('\t');
+        const cells = row.split(',');
 
         if (cells.length !== 3) {
             console.log(`Skipping row ${i}: "${row}"`);
