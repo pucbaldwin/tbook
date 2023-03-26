@@ -1,26 +1,28 @@
 const fines = [];
 const persons = {};
 
+
+
 async function fetchData() {
-  const response = await fetch('fines.csv');
-  const data = await response.text();
-  const rows = data.split('\n');
-  const header = rows[0].split(',');
+    const response = await fetch('fines.csv');
+    const data = await response.text();
+    const rows = data.split('\n');
 
-  for (let i = 1; i < rows.length; i++) {
-    const cells = rows[i].split(',');
-    const fine = {
-      person: cells[0],
-      text: cells[1],
-    };
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].split('\t');
+        const fine = {
+            person: cells[0],
+            text: cells[1],
+        };
 
-    fines.push(fine);
+        fines.push(fine);
 
-    if (!persons[fine.person]) {
-      persons[fine.person] = cells[2];
+        if (!persons[fine.person]) {
+            persons[fine.person] = cells[2];
+        }
     }
-  }
 }
+
 
 const fineTextElement = document.getElementById('fine-text');
 const personImageElement = document.getElementById('person-image');
