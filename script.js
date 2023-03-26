@@ -43,11 +43,17 @@ const personImageElement = document.getElementById('person-image');
 const generateButton = document.getElementById('generate-button');
 
 function generateRandomFine() {
-  const randomIndex = Math.floor(Math.random() * fines.length);
-  const selectedFine = fines[randomIndex];
-  fineTextElement.textContent = `${selectedFine.person}: ${selectedFine.text}`;
-  personImageElement.src = persons[selectedFine.person];
+    if (fines.length === 0) {
+        console.log('No fines available.');
+        return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * fines.length);
+    const selectedFine = fines[randomIndex];
+    fineTextElement.textContent = `${selectedFine.person}: ${selectedFine.text}`;
+    personImageElement.src = persons[selectedFine.person];
 }
+
 
 generateButton.addEventListener('click', generateRandomFine);
 
