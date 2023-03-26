@@ -8,16 +8,17 @@ async function fetchData() {
     const rows = data.split('\n');
 
     for (let i = 0; i < rows.length; i++) {
-        const row = rows[i].trim(); // Remove any leading or trailing whitespace
+        const row = rows[i].trim();
 
         if (row === '') {
-            continue; // Skip empty rows
+            continue;
         }
 
         const cells = row.split('\t');
 
         if (cells.length !== 3) {
-            continue; // Skip rows with an incorrect number of cells
+            console.log(`Skipping row ${i}: "${row}"`);
+            continue;
         }
 
         const fine = {
@@ -32,6 +33,7 @@ async function fetchData() {
         }
     }
 }
+
 
 
 
