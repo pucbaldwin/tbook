@@ -2,14 +2,19 @@ const fines = [];
 const persons = {};
 
 
-
 async function fetchData() {
     const response = await fetch('fines.csv');
     const data = await response.text();
     const rows = data.split('\n');
 
     for (let i = 0; i < rows.length; i++) {
-        const cells = rows[i].split('\t');
+        const row = rows[i].trim(); // Remove any leading or trailing whitespace
+
+        if (row === '') {
+            continue; // Skip empty rows
+        }
+
+        const cells = row.split('\t');
 
         if (cells.length !== 3) {
             continue; // Skip rows with an incorrect number of cells
@@ -27,6 +32,7 @@ async function fetchData() {
         }
     }
 }
+
 
 
 
